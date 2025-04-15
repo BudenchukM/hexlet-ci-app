@@ -19,3 +19,15 @@ jobs:
       - run: make test
       # make lint — запуск линтера
       - run: make lint
+steps:
+  - uses: actions/checkout@v4
+  # https://github.com/actions/setup-node
+  - uses: actions/setup-node@v4
+    with:
+      node-version: '18.x'
+      cache: 'npm' # ускоряет повторные сборки
+  - run: npm install
+  - run: npm ci
+  - run: npm test
+  - uses: hexlet-components/hello-from-hexlet-action@release
+  
